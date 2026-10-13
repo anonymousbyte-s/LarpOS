@@ -1,1 +1,0 @@
-./compile.sh build BOARD=orangepi3-lts BRANCH=current BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no RELEASE=trixie
