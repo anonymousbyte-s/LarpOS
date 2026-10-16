@@ -50,6 +50,13 @@ Main() {
     # copy the config files
     copyConfigs;
 
+    # Create a system user without a home directory, added to the video group
+    # this user is for the greetd service
+    sudo useradd -M -G video greeter
+
+    # Ensure the greeter user can read the configuration directory
+    sudo chmod -R go+r /etc/greetd/
+
     # enable the greetd service
     systemctl enable greetd
 }
