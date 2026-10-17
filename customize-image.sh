@@ -24,7 +24,6 @@ BUILD_DESKTOP=$4
 copyConfigs() {
     # copy the sway config
     install -D -m 644 /tmp/overlay/etc/skel/.config/sway/config /etc/skel/.config/sway/config
-
     # copy the greetd config
     install -D -m 644 /tmp/overlay/etc/greetd/config.toml /etc/greetd/config.toml
     # copy the tuigreet config
@@ -38,13 +37,17 @@ Main() {
     apt-get update
 
     # install packages
-    sudo apt install -y sway \
-    waybar \
+    apt-get install -y sway \
+    libxcb-dri2-0 \
     swaylock \
     tuigreet \
+    fuzzel \
+    firefox-esr \
+    foot \
+    thunar \
     greetd
 
-    # Clean up the apt cache to keep your final image smaller
+    # Clean up the apt cache
     apt-get clean
 
     # copy the config files
@@ -52,10 +55,13 @@ Main() {
 
     # Create a system user without a home directory, added to the video group
     # this user is for the greetd service
-    sudo useradd -M -G video greeter
+    useradd --system --no-create-home --shell /usr/sbin/nologin --groups video greeter
+
+    # disable the greeter user password login
+    passwd --lock greeter
 
     # Ensure the greeter user can read the configuration directory
-    sudo chmod -R go+r /etc/greetd/
+    chmod -R go+r /etc/greetd/
 
     # enable the greetd service
     systemctl enable greetd

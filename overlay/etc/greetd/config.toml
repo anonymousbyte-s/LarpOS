@@ -1,6 +1,6 @@
 [terminal]
-vt = 1
+vt = "next"
 
 [default_session]
-command = "tuigreet --cmd sway"
+command = "tuigreet --cmd sway --config /etc/tuigreet/config.toml"
 user = "greeter"

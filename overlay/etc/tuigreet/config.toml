@@ -1,6 +1,6 @@
 [display]
 show_time = true
-greeting = "Welcome home sir"
+greeting = "Verify your identity"
 align_greeting = "center"
 issue = false
 
