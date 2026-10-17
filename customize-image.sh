@@ -30,6 +30,11 @@ copyConfigs() {
     install -D -m 644 /tmp/overlay/etc/tuigreet/config.toml /etc/tuigreet/config.toml
 }
 
+copyBins() {
+    # install the tuigreet binary
+    install -D -m 755 /tmp/overlay/usr/local/bin/tuigreet /usr/local/bin/tuigreet
+}
+
 Main() {
     echo "Buidling for $BOARD with chip $LINUXFAMILY version $RELEASE"
 
@@ -40,7 +45,6 @@ Main() {
     apt-get install -y sway \
     libxcb-dri2-0 \
     swaylock \
-    tuigreet \
     fuzzel \
     firefox-esr \
     foot \
@@ -52,6 +56,9 @@ Main() {
 
     # copy the config files
     copyConfigs;
+
+    # copy the binaries
+    copyBins;
 
     # Create a system user without a home directory, added to the video group
     # this user is for the greetd service
