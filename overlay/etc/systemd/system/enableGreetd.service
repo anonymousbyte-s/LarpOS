@@ -1,0 +1,14 @@
+[Unit]
+Description=Enable greetd after initial user setup
+After=multi-user.target
+ConditionPathExists=!/root.not_logged_in_yet
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl enable greetd.service
+ExecStart=/usr/bin/systemctl restart greetd.service
+ExecStartPost=/usr/bin/systemctl disable %n
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

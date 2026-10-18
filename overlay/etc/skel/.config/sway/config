@@ -79,7 +79,7 @@ bindsym Mod4+space focus mode_toggle
 bindsym Mod4+t exec foot
 bindsym Mod4+v splitv
 bindsym Mod4+w layout tabbed
-bindsym Print exec grim
+# bindsym Print exec grim
 bindsym XF86Launch3 exec switchRefreshRate
 
 input "type:pointer" {
@@ -91,7 +91,7 @@ input "type:touchpad" {
 }
 
 output "*" {
-  bg /home/tom/Pictures/wallPapers/wallpaper.png fill
+  bg /usr/share/backgrounds/wallpaper.jpg fill
 }
 
 mode "resize" {
@@ -110,4 +110,3 @@ mode "resize" {
 gaps inner 5
 gaps outer -5
 smart_borders no_gaps
-exec_always systemctl --user restart waybar

@@ -35,6 +35,13 @@ copyBins() {
     install -D -m 755 /tmp/overlay/usr/local/bin/tuigreet /usr/local/bin/tuigreet
 }
 
+copyServices() {
+    # copy the service that enables and starts the greetd service after the first boot and login
+    install -D -m 744 /tmp/overlay/etc/systemd/system/enableGreetd.service /etc/systemd/system/enableGreetd.service
+    # enable the service
+    systemctl enable enableGreetd
+}
+
 Main() {
     echo "Buidling for $BOARD with chip $LINUXFAMILY version $RELEASE"
 
@@ -60,6 +67,8 @@ Main() {
     # copy the binaries
     copyBins;
 
+    copyServices;
+
     # Create a system user without a home directory, added to the video group
     # this user is for the greetd service
     useradd --system --no-create-home --shell /usr/sbin/nologin --groups video greeter
@@ -69,9 +78,6 @@ Main() {
 
     # Ensure the greeter user can read the configuration directory
     chmod -R go+r /etc/greetd/
-
-    # enable the greetd service
-    systemctl enable greetd
 }
 
 Main "$@"
