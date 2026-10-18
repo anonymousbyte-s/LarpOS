@@ -24,6 +24,8 @@ BUILD_DESKTOP=$4
 copyConfigs() {
     # copy the sway config
     install -D -m 644 /tmp/overlay/etc/skel/.config/sway/config /etc/skel/.config/sway/config
+    # copy the sway background
+    install -D -m 644 /tmp/overlay/usr/share/backgrounds/wallpaper.jpg /usr/share/backgrounds/wallpaper.jpg
     # copy the greetd config
     install -D -m 644 /tmp/overlay/etc/greetd/config.toml /etc/greetd/config.toml
     # copy the tuigreet config
