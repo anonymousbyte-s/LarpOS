@@ -41,7 +41,7 @@ copyServices() {
     # copy the service that enables and starts the greetd service after the first boot and login
     install -D -m 744 /tmp/overlay/etc/systemd/system/enableGreetd.service /etc/systemd/system/enableGreetd.service
     # enable the service
-    systemctl enable enableGreetd
+    systemctl enable enableGreetd.service
 }
 
 Main() {
