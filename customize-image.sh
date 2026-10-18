@@ -35,6 +35,8 @@ copyConfigs() {
 copyBins() {
     # install the tuigreet binary
     install -D -m 755 /tmp/overlay/usr/local/bin/tuigreet /usr/local/bin/tuigreet
+    # copy the script for the enableGreetd.service file
+    install -D -m 755 /tmp/overlay/usr/local/bin/enableGreetd.sh /usr/local/bin/enableGreetd.sh
 }
 
 copyServices() {
@@ -80,6 +82,9 @@ Main() {
 
     # Ensure the greeter user can read the configuration directory
     chmod -R go+r /etc/greetd/
+
+    # disable the greetd.service to allow the user to setup their user account in the tty
+    systemctl disable greetd.service || true
 }
 
 Main "$@"

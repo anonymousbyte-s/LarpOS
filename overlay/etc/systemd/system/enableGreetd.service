@@ -4,10 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c 'until [ ! -e /root/.not_logged_in_yet ]; do sleep 1; done'
-ExecStart=/usr/bin/systemctl enable greetd.service
-ExecStart=/usr/bin/systemctl restart greetd.service
-ExecStartPost=/usr/bin/systemctl disable %n
+ExecStart=/usr/local/bin/enableGreetd.sh
 RemainAfterExit=yes
 
 [Install]
